@@ -33,6 +33,9 @@
       filter: blur(var(--blur));
     }
 
+    .hl {
+      color: var(--base);
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -58,20 +61,30 @@
   <script>
     let root = document.documentElement;
 
-    let inputSpacing = document.getElementById('spacing');
-    inputSpacing.addEventListener('input', () => {
-      root.style.setProperty('--spacing', inputSpacing.value + "px")
-    });
+    function handleChange() {
+      console.log(this.dataset)
+      const suffix = this.dataset.sizing || '';
+      root.style.setProperty(`--${this.name}`, this.value + suffix)
+    };
 
-    let inputBlur = document.getElementById('blur');
-    inputBlur.addEventListener('input', () => {
-      root.style.setProperty('--blur', inputBlur.value + "px")
-    });
+    const inputs = document.querySelectorAll('input')
+    console.log(inputs)
+    inputs.forEach(input => input.addEventListener('input', handleChange));
 
-    let inputBase = document.getElementById('base');
-    inputBase.addEventListener('input', () => {
-      root.style.setProperty('--base', inputBase.value)
-    })
+    // let inputSpacing = document.getElementById('spacing');
+    // inputSpacing.addEventListener('input', () => {
+    //   root.style.setProperty('--spacing', inputSpacing.value + "px")
+    // });
+
+    // let inputBlur = document.getElementById('blur');
+    // inputBlur.addEventListener('input', () => {
+    //   root.style.setProperty('--blur', inputBlur.value + "px")
+    // });
+
+    // let inputBase = document.getElementById('base');
+    // inputBase.addEventListener('input', () => {
+    //   root.style.setProperty('--base', inputBase.value)
+    // })
 
   </script>
 
